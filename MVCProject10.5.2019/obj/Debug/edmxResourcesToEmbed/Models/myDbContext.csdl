@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin_tbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="categories" Relationship="Self.FK__category__admin___145C0A3F" FromRole="admin_tbl" ToRole="category" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="cat_id" />
+    </Key>
+    <Property Name="cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cat_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cat_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="admin_ID" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <NavigationProperty Name="admin_tbl" Relationship="Self.FK__category__admin___145C0A3F" FromRole="category" ToRole="admin_tbl" />
+    <NavigationProperty Name="products" Relationship="Self.FK__product__Cat_ID__2C3393D0" FromRole="category" ToRole="product" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="cust_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cus_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cust_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="orderTbls" Relationship="MVCDBModel.FK_orderTbl_customer" FromRole="customer" ToRole="orderTbl" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="prod_id" />
+    </Key>
+    <Property Name="prod_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prod_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="prod_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="prod_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Int32" />
+    <Property Name="stock" Type="Int32" />
+    <Property Name="Cat_ID" Type="Int32" />
+    <NavigationProperty Name="category" Relationship="Self.FK__product__Cat_ID__2C3393D0" FromRole="product" ToRole="category" />
+    <NavigationProperty Name="orderTbls" Relationship="MVCDBModel.FK_orderTbl_product" FromRole="product" ToRole="orderTbl" />
+  </EntityType>
+  <Association Name="FK__category__admin___145C0A3F">
+    <End Role="admin_tbl" Type="Self.admin_tbl" Multiplicity="0..1" />
+    <End Role="category" Type="Self.category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admin_tbl">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="category">
+        <PropertyRef Name="admin_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__product__Cat_ID__2C3393D0">
+    <End Role="category" Type="Self.category" Multiplicity="0..1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="cat_id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="Cat_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="myDbContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin_tbl" EntityType="Self.admin_tbl" />
+    <EntitySet Name="categories" EntityType="Self.category" />
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <AssociationSet Name="FK__category__admin___145C0A3F" Association="Self.FK__category__admin___145C0A3F">
+      <End Role="admin_tbl" EntitySet="admin_tbl" />
+      <End Role="category" EntitySet="categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__product__Cat_ID__2C3393D0" Association="Self.FK__product__Cat_ID__2C3393D0">
+      <End Role="category" EntitySet="categories" />
+      <End Role="product" EntitySet="products" />
+    </AssociationSet>
+    <EntitySet Name="orderTbls" EntityType="MVCDBModel.orderTbl" />
+    <AssociationSet Name="FK_orderTbl_customer" Association="MVCDBModel.FK_orderTbl_customer">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="orderTbl" EntitySet="orderTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orderTbl_product" Association="MVCDBModel.FK_orderTbl_product">
+      <End Role="product" EntitySet="products" />
+      <End Role="orderTbl" EntitySet="orderTbls" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="orderTbl">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cust_id" Type="Int32" />
+    <Property Name="prod_id" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <NavigationProperty Name="customer" Relationship="MVCDBModel.FK_orderTbl_customer" FromRole="orderTbl" ToRole="customer" />
+    <NavigationProperty Name="product" Relationship="MVCDBModel.FK_orderTbl_product" FromRole="orderTbl" ToRole="product" />
+  </EntityType>
+  <Association Name="FK_orderTbl_customer">
+    <End Type="MVCDBModel.customer" Role="customer" Multiplicity="0..1" />
+    <End Type="MVCDBModel.orderTbl" Role="orderTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="cust_id" />
+      </Principal>
+      <Dependent Role="orderTbl">
+        <PropertyRef Name="cust_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orderTbl_product">
+    <End Type="MVCDBModel.product" Role="product" Multiplicity="0..1" />
+    <End Type="MVCDBModel.orderTbl" Role="orderTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="prod_id" />
+      </Principal>
+      <Dependent Role="orderTbl">
+        <PropertyRef Name="prod_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

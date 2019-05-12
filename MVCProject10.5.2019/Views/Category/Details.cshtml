@@ -1,0 +1,32 @@
+﻿@model MVCProject10._5._2019.Models.category
+<div id="MyModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" id="modelBody">
+                <table class="table">
+                    <tr>
+                        <td>ID</td>
+                        <td>@Model.cat_id</td>
+                    </tr>
+                    <tr>
+                        <td>Admin Added</td>
+                        <td>@ViewBag.adminName</td>
+                    </tr>
+                    <tr>
+                        <td>Staus</td>
+                        <td>@Model.status</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><img src="@Url.Content(Model.cat_image)" height="300" width="560" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="submit" class="btn btn-danger btn-block" data-dismiss="modal">Ok</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

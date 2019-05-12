@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MVCProject10._5._2019.Models.customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-bordered table-hover" id="DataTable">
+    <thead class="alert-success">
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Phone</th>
+            <th class="text-center">Details</th>
+            @*<th class="text-center">Edit</th>*@
+            <th class="text-center">Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cust in Model)
+        {
+            <tr>
+                <th class="text-center">@cust.cust_id</th>
+                <th class="text-center">@cust.cust_name</th>
+                <th class="text-center">@cust.cus_email</th>
+                <th class="text-center">@cust.cust_phone</th>
+                <td class="text-center">@Html.ActionLink("Details", "Details", "customer", new { id = @cust.cust_id }, new { @class = "btn btn-info" })</td>
+               @* <td class="text-center">@Html.ActionLink("Edit", "Edit", "customer", new { id = @cust.cust_id }, new { @class = "btn btn-primary" })</td>*@
+                <td class="text-center">@Html.ActionLink("Delete", "Delete", "customer", new { id = @cust.cust_id }, new { @class = "btn btn-danger" })</td>
+            </tr>
+        }
+    </tbody>
+</table>

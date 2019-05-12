@@ -1,0 +1,53 @@
+﻿@model MVCProject10._5._2019.Models.product
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+<div class="container page-content">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-wrapper">
+                <div class="box">
+                    <div class="content-wrap">
+                        <div class="social">
+                            <div class="division">
+                            </div>
+                        </div>
+                        @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.TextBoxFor(x => x.prod_name, new { @class = "form-control", @placeholder = "Product name" })
+                            @Html.ValidationMessageFor(x => x.prod_name)
+                            <br/>
+                            @Html.TextBoxFor(x => x.prod_description, new { @class = "form-control", @placeholder = " Product Description" })
+                            @Html.ValidationMessageFor(x => x.prod_description)
+                            <br />
+                            @Html.TextBoxFor(x => x.stock, new { @class = "form-control", @placeholder = "Product Stock" })
+                            @Html.ValidationMessageFor(x => x.stock)
+                            <br />
+                            @Html.TextBoxFor(x => x.price, new { @class = "form-control", @placeholder = "Product Price" })
+                            @Html.ValidationMessageFor(x => x.price)
+                            <br/>
+                            @*<select name="Cat_ID" class="form-control">
+                                @foreach (var cat in ViewBag.category)
+                                {
+                                    <option value="@cat.cat_id">@cat.cat_name</option>
+                                }
+                            </select>*@
+                            @Html.DropDownList("Cat_ID",new SelectList(ViewBag.category, "cat_id","cat_name"), new { @class = "form-control"})
+                            @Html.ValidationMessageFor(x => x.category.cat_id)
+                            <br />
+                            <input type="file" class="form-control" name="img" />
+                            <br />
+                            <button type="submit" class="btn btn-primary ">Create</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

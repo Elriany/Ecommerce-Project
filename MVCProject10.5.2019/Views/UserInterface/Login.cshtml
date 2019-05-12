@@ -1,0 +1,37 @@
+﻿@model MVCProject10._5._2019.Models.customer
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/content/css/styles.css" rel="stylesheet" />
+</head>
+<body style="background-image: url('../../content/images/3.jpg'); background-size: cover; box-sizing:border-box;">
+    <div class="container">
+        <div class="col-md-6 col-md-offset-2">
+            <h1 class="text-center">Login Form</h1>
+            @using (Html.BeginForm("Login", "UserInterface", FormMethod.Post))
+            {
+                <div class="alert-danger">@ViewBag.error</div>
+                <br />
+                    @Html.TextBoxFor(x => x.cust_name, new { @class = "form-control", @placeholder = "Username" })
+                    @Html.ValidationMessageFor(x => x.cust_name)
+                    <br />
+                    @Html.TextBoxFor(x => x.cus_email, new { @class = "form-control", @placeholder = "Email" })
+                    @Html.ValidationMessageFor(x => x.cus_email)
+                    <br />
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-danger">sign In</button>
+                        @Html.ActionLink("Sign Up", "register",null,new { @class="btn btn-success"})
+                    </div>
+            }
+        </div>
+    </div>
+    <script src="~/script/js/jquery-3.0.0.min.js"></script>
+    <script src="~/script/js/bootstrap.min.js"></script>
+    <script src="~/script/js/custom.js"></script>
+</body>
+</html>

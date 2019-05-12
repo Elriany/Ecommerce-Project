@@ -1,0 +1,39 @@
+﻿@model MVCProject10._5._2019.Models.customer
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+<div class="container page-content">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-wrapper">
+                <div class="box">
+                    <div class="content-wrap">
+                        <div class="social">
+                            <div class="division">
+                            </div>
+                        </div>
+                        @using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.TextBoxFor(x => x.cust_name, new { @class = "form-control", @placeholder = "Name" })
+                            @Html.ValidationMessageFor(x => x.cust_name)
+                            <br />
+                            @Html.TextBoxFor(x => x.cus_email, new { @class = "form-control", @placeholder = "Email" })
+                            @Html.ValidationMessageFor(x => x.cus_email)
+                            <br />
+                            @Html.TextBoxFor(x => x.cust_phone, new { @class = "form-control", @placeholder = "Phone" })
+                            @Html.ValidationMessageFor(x => x.cust_phone)
+                            <br />
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

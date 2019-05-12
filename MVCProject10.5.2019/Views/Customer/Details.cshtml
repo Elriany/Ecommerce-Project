@@ -1,0 +1,26 @@
+﻿@model MVCProject10._5._2019.Models.customer
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Details</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Phone</th>
+
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <th class="text-center">@Model.cust_id</th>
+                <th class="text-center">@Model.cust_name</th>
+                <th class="text-center">@Model.cus_email</th>
+                <th class="text-center">@Model.cust_phone</th>
+            </tr>
+    </tbody>
+</table>
+@Html.ActionLink("Back To List", "index",null,new { @class="btn btn-danger" })

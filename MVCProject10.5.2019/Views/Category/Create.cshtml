@@ -1,0 +1,34 @@
+﻿@model MVCProject10._5._2019.Models.category
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+<div class="container page-content">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-wrapper">
+                <div class="box">
+                    <div class="content-wrap">
+                        <div class="social">
+                            <div class="division">
+                            </div>
+                        </div>
+                        @using (Html.BeginForm("Create", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.TextBoxFor(x => x.cat_name, new { @class = "form-control", @placeholder = "Category name" })
+                            @Html.ValidationMessageFor(x => x.cat_name)
+                            <input type="file" class="form-control" name="img" />
+                            <br />
+                            <button type="submit" class="btn btn-primary btn-block">Create</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MVCDBModelStoreContainer" CdmEntityContainer="myDbContext">
+    <EntitySetMapping Name="admin_tbl">
+      <EntityTypeMapping TypeName="MVCDBModel.admin_tbl">
+        <MappingFragment StoreEntitySet="admin_tbl">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="MVCDBModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+          <ScalarProperty Name="cat_image" ColumnName="cat_image" />
+          <ScalarProperty Name="admin_ID" ColumnName="admin_ID" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="MVCDBModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+          <ScalarProperty Name="cus_email" ColumnName="cus_email" />
+          <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="MVCDBModel.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="prod_id" ColumnName="prod_id" />
+          <ScalarProperty Name="prod_name" ColumnName="prod_name" />
+          <ScalarProperty Name="prod_image" ColumnName="prod_image" />
+          <ScalarProperty Name="prod_description" ColumnName="prod_description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="Cat_ID" ColumnName="Cat_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orderTbls">
+      <EntityTypeMapping TypeName="MVCDBModel.orderTbl">
+        <MappingFragment StoreEntitySet="orderTbl">
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="prod_id" ColumnName="prod_id" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

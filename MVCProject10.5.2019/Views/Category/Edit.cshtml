@@ -1,0 +1,58 @@
+﻿@model MVCProject10._5._2019.Models.category
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.HiddenFor(model => model.cat_id)
+        <div class="form-group">
+            @Html.LabelFor(model => model.cat_name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.cat_name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.cat_name)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.status, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.status, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.status)
+            </div>
+        </div>
+        @if (!String.IsNullOrWhiteSpace(Model.cat_image))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.cat_image, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <img src="@Url.Content(Model.cat_image)" width="500" height="300" /><br /><br />
+                    <input type="file" class="form-control" name="imgfile" />
+                    @Html.ValidationMessageFor(model => model.cat_image)
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <label >Image</label>
+                <div class="col-md-10">
+                    <input type="file" class="form-control" name="imgfile" />
+                </div>
+            </div>
+        }
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Back to Index", "Index", null, new { @class = "btn btn-success" })
+                <input type="submit" value="Save" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+}

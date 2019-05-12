@@ -1,0 +1,16 @@
+﻿@model MVCProject10._5._2019.Models.product
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+<div class="row">
+        <div class="col-md-12 text-center">
+            <br />
+            <img src="@Url.Content(Model.prod_image)" width="600" height="400" />
+            <h2>@Model.prod_name</h2>
+            <h2>@Model.price$</h2>
+            <p>@Model.prod_description</p>
+            @Html.ActionLink("Back To Products", "Index", "UserInterface", new { @class = "btn btn-info" })
+            @Html.ActionLink("Add To Cart", "AddInCart", "UserInterface", new { id = Model.prod_id }, new { @class = "btn btn-danger" })
+        </div>
+</div>

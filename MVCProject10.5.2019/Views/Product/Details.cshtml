@@ -1,0 +1,45 @@
+﻿@model MVCProject10._5._2019.Models.product
+<div id="MyModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" id="modelBody">
+                <table class="table table-hover">
+                    <tr>
+                        <td>ID</td>
+                        <td>@Model.prod_id</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>@Model.prod_name</td>
+                    </tr>
+                    <tr>
+                        <td>Stock</td>
+                        <td>@Model.stock</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td>@Model.price</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>@Model.prod_description</td>
+                    </tr>
+                    <tr>
+                        <td>Category</td>
+                        <td>@ViewBag.catName</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><img src="@Url.Content(Model.prod_image)" height="300" width="560" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="submit" class="btn btn-danger btn-block" data-dismiss="modal">Ok</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

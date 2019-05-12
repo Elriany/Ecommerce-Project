@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MVCProject10._5._2019.Models.category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ActionLink("Create","Create","Category",null,new { @class="btn btn-success"})
+<table class="table table-bordered table-hover"  id="DataTable">
+    <thead class="alert-success">
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Category Name</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Admin Added</th>
+            <th class="text-center">Image</th>
+            <th class="text-center">Details</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var cat in Model)
+       {
+            <tr>
+                <th class="text-center">@cat.cat_id</th>
+                <th class="text-center">@cat.cat_name</th>
+                <th class="text-center">@cat.status</th>
+                <th class="text-center">@cat.admin_ID</th>
+                @if (!string.IsNullOrWhiteSpace(cat.cat_image))
+                {
+                    <td class="text-center">
+                        <img src="@Url.Content(cat.cat_image)" alt="img"  width="60" height="60">
+                    </td>
+                }
+                @*download jQuery Unobtrusive Ajax Firstly and using in layout*@
+                <td class="text-center">@Ajax.ActionLink("Details", "Details", new { id = cat.cat_id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "mydiv", OnComplete = "CallMyPartialView" }, new { @class = "btn btn-warning" })</td>
+                <td class="text-center">@Html.ActionLink("Edit", "Edit", "Category", new { id = @cat.cat_id }, new { @class = "btn btn-primary" })</td>
+                <td class="text-center">@Html.ActionLink("Delete", "Delete", "Category", new { id = @cat.cat_id }, new { @class = "btn btn-danger" })</td>
+            </tr>
+       }
+    </tbody>
+</table>
+<div id="mydiv"></div>
+<script>
+    function CallMyPartialView() {
+        $("#MyModal").modal({ show: true });
+    }
+</script>
